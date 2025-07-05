@@ -14,8 +14,10 @@ function App() {
       <BrowserRouter>
         <RoutesWhitNotFound>
           <Route path="/" element={<TaskList/>}/>
-          <Route path="/form" element={<TaskForm/>}/>
-          <Route path="/item" element={<TaskItem/>}/>
+          <Route path="/task/:id" element={<TaskItem/>}/>
+          <Route path="/create" element={<TaskForm/>}/>
+          {/* <Route path="/update/:id" element={<TaskForm/>}/> */}
+          
         </RoutesWhitNotFound>
         
         {/* Mensaje */}

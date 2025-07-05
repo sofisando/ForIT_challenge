@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 
 const app = express();
@@ -8,15 +9,18 @@ let tasks = [
     id: 1,
     title: "Tarea 1",
     description: "Descripción de la tarea 1",
-    done: false,
+    completed: false,
+    createdAt: new Date(),
   },
 ];
 
 //middlewares
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
 
+//endpoints
 //todas las tareas
 app.get("/api/tasks", (req, res) => {
   res.json(tasks);
@@ -24,7 +28,7 @@ app.get("/api/tasks", (req, res) => {
 
 //agregar una tarea
 app.post("/api/tasks", (req, res) => {
-  const newTask = { ...req.body, id: tasks.length + 1 };
+  const newTask = { ...req.body, id: tasks.length + 1 , createdAt: new Date()};
   tasks.push(newTask);
   res.send(`Tarea agregada: ${newTask.title}`);
 });
