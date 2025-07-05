@@ -30,7 +30,8 @@ app.get("/api/tasks", (req, res) => {
 app.post("/api/tasks", (req, res) => {
   const newTask = { ...req.body, id: tasks.length + 1 , createdAt: new Date()};
   tasks.push(newTask);
-  res.send(`Tarea agregada: ${newTask.title}`);
+  // res.json(`Tarea agregada: ${newTask.title}`);
+  res.json(tasks);
 });
 
 //obtener una tarea por ID
@@ -59,7 +60,7 @@ app.delete("/api/tasks/:id", (req, res) => {
     });
   
   tasks = tasks.filter((task) => task.id !== parseInt(req.params.id));
-  res.sendStatus(204);
+  res.json(tasks);
 });
 
 app.put("/api/tasks/:id", (req, res) => {
@@ -74,9 +75,7 @@ app.put("/api/tasks/:id", (req, res) => {
     });
 
   tasks = tasks.map(task => task.id === parseInt(req.params.id) ? {...task, ...newData} : task);
-  res.json({
-    message: "Task updated successfully"
-  });
+  res.json(tasks);
 });
 
 app.listen(3000);

@@ -6,6 +6,7 @@ import RoutesWhitNotFound from "./utils/RoutesWhitNotFound";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 import TaskItem from "./components/TaskItem";
+import { Toaster } from "sonner";
 
 function App() {
 
@@ -16,12 +17,12 @@ function App() {
           <Route path="/" element={<TaskList/>}/>
           <Route path="/task/:id" element={<TaskItem/>}/>
           <Route path="/create" element={<TaskForm/>}/>
-          {/* <Route path="/update/:id" element={<TaskForm/>}/> */}
+          <Route path="/edit/:id" element={<TaskForm />} />
           
         </RoutesWhitNotFound>
         
         {/* Mensaje */}
-        {/* <Toaster position="bottom-right" richColors /> */}
+        <Toaster richColors position="top-center" />
       </BrowserRouter>
     </Suspense>
   )
